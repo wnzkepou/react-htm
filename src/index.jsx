@@ -1,5 +1,8 @@
-import { render } from 'preact';
-import { html } from 'htm/preact';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { html } from 'htm/react';
+import './style.css';
+import htm from 'htm';
 
 import preactLogo from './assets/preact.svg';
 import './style.css';
@@ -12,17 +15,17 @@ export function App() {
 			</a>
 			<h1>Get Started building Vite-powered Preact Apps </h1>
 			<section>
-				<Resource
+				<${Resource}
 					title="Learn Preact"
 					description="If you're new to Preact, try the interactive tutorial to learn important concepts"
 					href="https://preactjs.com/tutorial"
 				/>
-				<Resource
+				<${Resource}
 					title="Differences to React"
 					description="If you're coming from React, you may want to check out our docs to see where Preact differs"
 					href="https://preactjs.com/guide/v10/differences-to-react"
 				/>
-				<Resource
+				<${Resource}
 					title="Learn Vite"
 					description="To learn more about Vite and how you can customize it to fit your needs, take a look at their excellent documentation"
 					href="https://vitejs.dev"
@@ -34,11 +37,11 @@ export function App() {
 
 function Resource(props) {
 	return html`
-		<a href=${props.href} target="_blank" class="resource">
+		<a href=${props.href} target="_blank" className="resource">
 			<h2>${props.title}</h2>
 			<p>${props.description}</p>
 		</a>
 	`;
 }
 
-render(html`<${App} />`, document.getElementById('app'));
+createRoot(document.getElementById('app')).render(html`<${App} />`);
